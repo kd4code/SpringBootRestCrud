@@ -26,7 +26,7 @@ public class Controller {
    }
    @PostMapping("/register")
    public ResponseEntity<?> saveVoter(@RequestBody Voter v)
-   {System.out.println("Inside Controller");
+   {
 	 int id=vs.saveVoter(v); 
 	 return new ResponseEntity<>("Data Registered Successfully with Id:"+v.getId(),HttpStatus.ACCEPTED);
    }

@@ -1,8 +1,12 @@
 package vote.Model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -14,12 +18,16 @@ public class Voter {
 
 	@Id
 	@Column(name = "ID")
-	int id;
+	private int id;
 	@Column(name = "Age")
-	int age;
+	private int age;
 	@Column(name = "Name")
-	String name;
-
+	private String name;
+    
+	@ManyToOne(targetEntity = Address.class,cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name ="Pin",referencedColumnName = "pin")
+	private Address ad;
+	
 	public Voter() {
 		super();
 	}
@@ -57,10 +65,25 @@ public class Voter {
 		this.name = name;
 	}
 
+
+	
+
+
+	public Address getAd() {
+		return ad;
+	}
+
+
+	public void setAd(Address ad) {
+		this.ad = ad;
+	}
+
+
 	@Override
 	public String toString() {
-		return "Voter [id=" + id + ", age=" + age + ", name=" + name + "]";
+		return "Voter [id=" + id + ", age=" + age + ", name=" + name +  "]";
 	}
+
 	
 	
 
